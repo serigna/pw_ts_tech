@@ -11,14 +11,15 @@ test.describe("Ui test suite", () => {
       email: string,
       department: string;
     name = "Alden";
-    lastName = "Cantrell"
-    age = "30"
-    salary = "12345"
-    email = "test@test.com"
-    department = "QA"
+    lastName = "Cantrell";
+    age = "30";
+    salary = "12345";
+    email = "test@test.com";
+    department = "QA";
 
     await elementsPage.navigateToElementsPage();
     await elementsPage.webTableCreation(name, lastName, age, salary, email, department);
+    await elementsPage.page.pause()
     await elementsPage.verifyThatTheDataWasPopulatedCorrectly(name, lastName, age, salary, email, department);
   });
 
