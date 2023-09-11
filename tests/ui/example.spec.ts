@@ -1,4 +1,6 @@
-import { test, expect } from '@playwright/test';
+// import { test, expect } from '@playwright/test';
+import test from '@lib/conftest'
+
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');

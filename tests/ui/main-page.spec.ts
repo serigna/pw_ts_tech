@@ -1,12 +1,29 @@
-import { test } from '@playwright/test'
+import test from "@lib/conftest";
 
-test.describe('Ui test suite', () => {
+test.describe("Ui test suite", () => {
+  test.only("Verify user can enter new data into the table", async ({
+    elementsPage,
+  }) => {
+    let name: string,
+      lastName: string,
+      age: string,
+      salary: string,
+      email: string,
+      department: string;
+    name = "Alden";
+    lastName = "Cantrell"
+    age = "30"
+    salary = "12345"
+    email = "test@test.com"
+    department = "QA"
 
-    test.only('Verify user can enter new data into the table', async ({ page }) => {
-        
-        page.goto('https://demoqa.com/')
-        page.pause()
+    await elementsPage.navigateToElementsPage();
+    await elementsPage.webTableCreation(name, lastName, age, salary, email, department);
+    await elementsPage.verifyThatTheDataWasPopulatedCorrectly(name, lastName, age, salary, email, department);
+  });
 
-    })
-    
-})
+  test("Verify user can edit the row in a table", async ({
+    page,
+    elementsPage,
+  }) => {});
+});
