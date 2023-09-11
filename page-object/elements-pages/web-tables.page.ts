@@ -76,7 +76,7 @@ export class WebTablesElements {
     const rowTexts = await row.locator(':scope').allInnerTexts()
 
     rowTexts.forEach((text) => {
-      if (text.includes('test@test.com')) {
+      if (text.includes(email)) {
         listOfElements = text.split("\n", 6)
       }
     })
@@ -107,5 +107,20 @@ export class WebTablesElements {
     await this.verifyTheSubmittedDataRow(age, email)
     await this.verifyTheSubmittedDataRow(salary, email)
     await this.verifyTheSubmittedDataRow(department, email)
+  }
+
+  async clickOnTheEditButtonOfTheRecord(
+    name: string,
+    lastName: string,
+    age: string,
+    email: string,
+    salary: string,
+    department: string
+  ): Promise<void> {
+    await this.page
+    .getByRole('row', { name: `${name} ${lastName} ${age} ${email} ${salary} ${department} Edit Delete` })
+    .getByTitle('Edit')
+    .getByRole('img').click();
+
   }
 }

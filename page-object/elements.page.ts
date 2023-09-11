@@ -35,7 +35,10 @@ export class ElementsPage {
     await this.webTablesElements.populateSalaryField(salary);
     await this.webTablesElements.populateEmailField(email);
     await this.webTablesElements.populateDepartmentField(department);
+  }
 
+  async submitTheRegistrationForm(): Promise<void> {
+    await this.webTablesElements.submitTheRegistrationForm();
   }
 
   async verifyThatTheDataWasPopulatedCorrectly(
@@ -46,7 +49,6 @@ export class ElementsPage {
     email: string,
     department: string
   ): Promise<void> {
-    await this.webTablesElements.submitTheRegistrationForm();
     await this.webTablesElements.verifyTheSubmittedData(
       name,
       lastName,
@@ -55,5 +57,27 @@ export class ElementsPage {
       email,
       department
     );
+  }
+
+  async clickOnTheEditButton(
+    name: string,
+    lastName: string,
+    age: string,
+    salary: string,
+    email: string,
+    department: string
+  ): Promise<void> {
+    await this.page
+    .getByRole('row', { name: `${name} ${lastName} ${age} ${email} ${salary} ${department} Edit Delete` })
+    .getByTitle('Edit')
+    .getByRole('img').click();
+  }
+
+  async modifyDesiredFieldInTheForm(field: string, new_value: string): Promise<void> {
+    switch (field) {
+      case 'Name':
+        await this.webTablesElements.populateFirstNameField(new_value);
+        break
+    }
   }
 }
