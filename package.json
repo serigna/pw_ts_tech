@@ -1,7 +1,7 @@
 {
   "name": "SergiuszIgnatowski-GM-Assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "Technical Assignment Project.",
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --headed"
@@ -13,6 +13,7 @@
     "@playwright/test": "^1.37.1"
   },
   "dependencies": {
-    "eslint": "^8.49.0"
+    "eslint": "^8.49.0",
+    "playwright": "^1.37.1"
   }
 }

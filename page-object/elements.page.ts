@@ -16,7 +16,7 @@ export class ElementsPage {
   async navigateToElementsPage(): Promise<void> {
     await this.mainPage.navigateToTheMainPage();
     await this.mainPage.navigateToTheElementsPage();
-    await this.page.waitForLoadState();
+    await this.page.waitForLoadState("domcontentloaded");
   }
 
   async webTableCreation(
@@ -77,6 +77,21 @@ export class ElementsPage {
     switch (field) {
       case 'Name':
         await this.webTablesElements.populateFirstNameField(new_value);
+        break
+      case 'Last Name':
+        await this.webTablesElements.populateLastNameField(new_value);
+        break
+      case 'Department':
+        await this.webTablesElements.populateDepartmentField(new_value);
+        break
+      case 'Age':
+        await this.webTablesElements.populateAgeField(new_value);
+        break
+      case 'Email':
+        await this.webTablesElements.populateEmailField(new_value);
+        break
+      case 'Salary':
+        await this.webTablesElements.populateSalaryField(new_value);
         break
     }
   }

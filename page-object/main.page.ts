@@ -1,9 +1,7 @@
 import type { Page, Locator } from "@playwright/test";
-import { UiActions } from "@lib/uiActions.lib";
 
 export class MainPage {
   readonly page: Page;
-  readonly uiActions: UiActions;
   readonly elementsSection: Locator;
   readonly formsSection: Locator;
   readonly alertsSetcion: Locator;
@@ -13,7 +11,6 @@ export class MainPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.uiActions = new UiActions(this.page);
     this.elementsSection = page
       .locator("div")
       .filter({ hasText: /^Elements$/ })
@@ -41,10 +38,12 @@ export class MainPage {
   }
 
   async navigateToTheMainPage(): Promise<void> {
-    this.uiActions.navigateToThePage("/");
+    await this.page.goto('/');
+    await this.page.waitForLoadState();
   }
 
   async navigateToTheElementsPage(): Promise<void> {
-    this.uiActions.navigateToTheSection(this.elementsSection);
+    await this.elementsSection.click();
+    await this.page.waitForLoadState();
   }
 }

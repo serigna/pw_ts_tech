@@ -1,9 +1,7 @@
 import test, { Page, Locator, expect } from "@playwright/test";
-import { UiActions } from "@lib/UiActions.lib";
 
 export class WebTablesElements {
   readonly page: Page;
-  readonly uiActions: UiActions;
   readonly webTablesOption: Locator;
   readonly addButton: Locator;
   readonly registrationFormTitle: Locator;
@@ -17,7 +15,6 @@ export class WebTablesElements {
 
   constructor(page: Page) {
     this.page = page;
-    this.uiActions = new UiActions(this.page);
     this.webTablesOption = page.getByText("Web Tables");
     this.addButton = page.getByRole("button", { name: "Add" });
     this.registrationFormTitle = page.getByText("Registration Form");
@@ -33,7 +30,8 @@ export class WebTablesElements {
   }
 
   async navigateToWebTableElement(): Promise<void> {
-    await this.uiActions.navigateToTheSection(this.webTablesOption);
+    await this.webTablesOption.click();
+    await this.page.waitForLoadState();
   }
 
   async openRegistrationForm(): Promise<void> {
@@ -75,7 +73,7 @@ export class WebTablesElements {
     const row = this.page.locator('div.rt-tr-group')
     const rowTexts = await row.locator(':scope').allInnerTexts()
 
-    rowTexts.forEach((text) => {
+    rowTexts.forEach((text: string) => {
       if (text.includes(email)) {
         listOfElements = text.split("\n", 6)
       }
@@ -90,7 +88,7 @@ export class WebTablesElements {
 
     const rowElements = await this.retrieveTheDataFromTable(email)
     if (!rowElements.includes(text)) {
-      test.fail()
+      throw new Error('There is no such a row in the table.')
     }
   }
 
@@ -109,18 +107,4 @@ export class WebTablesElements {
     await this.verifyTheSubmittedDataRow(department, email)
   }
 
-  async clickOnTheEditButtonOfTheRecord(
-    name: string,
-    lastName: string,
-    age: string,
-    email: string,
-    salary: string,
-    department: string
-  ): Promise<void> {
-    await this.page
-    .getByRole('row', { name: `${name} ${lastName} ${age} ${email} ${salary} ${department} Edit Delete` })
-    .getByTitle('Edit')
-    .getByRole('img').click();
-
-  }
 }
