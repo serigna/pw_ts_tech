@@ -1,34 +1,24 @@
 import test from "@lib/conftest";
 import { faker } from "@faker-js/faker/locale/en";
 
-test.beforeEach(async ({ 
-  mainPage 
-}) => {
+test.beforeEach(async ({ mainPage }) => {
   await mainPage.navigateToTheMainPage();
-})
-
+});
 
 test.describe("UI test suite", () => {
   test("Verify user can enter new data into the table", async ({
     elementsPage,
     mainPage,
   }) => {
-    let name: string,
-      lastName: string,
-      age: string,
-      salary: string,
-      email: string,
-      department: string;
-
     /* Despite the task (in both test cases) have the data provided, it is better
     to use random data that proves the application is free of defects. */
 
-    name = faker.person.firstName();
-    lastName = faker.person.lastName();
-    age = faker.string.numeric({ length: 2 });
-    salary = faker.string.numeric({ length: 5 });
-    email = faker.internet.email();
-    department = "QA";
+    const name = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const age = faker.string.numeric({ length: 2 });
+    const salary = faker.string.numeric({ length: 5 });
+    const email = faker.internet.email();
+    const department = "QA";
 
     await mainPage.navigateToTheElementsSection();
     await elementsPage.webTableCreation(
@@ -54,19 +44,12 @@ test.describe("UI test suite", () => {
     elementsPage,
     mainPage,
   }) => {
-    let name: string,
-      lastName: string,
-      age: string,
-      salary: string,
-      email: string,
-      department: string;
-
-    name = faker.person.firstName();
-    lastName = faker.person.lastName();
-    age = faker.string.numeric({ length: 2 });
-    salary = faker.string.numeric({ length: 5 });
-    email = faker.internet.email();
-    department = "QA";
+    const name = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const age = faker.string.numeric({ length: 2 });
+    const salary = faker.string.numeric({ length: 5 });
+    const email = faker.internet.email();
+    const department = "QA";
 
     await mainPage.navigateToTheElementsSection();
 

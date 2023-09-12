@@ -1,4 +1,4 @@
-import test, { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class TooltipSubpage {
   readonly page: Page;
