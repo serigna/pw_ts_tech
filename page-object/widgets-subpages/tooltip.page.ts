@@ -11,8 +11,8 @@ export class TooltipSubpage {
     this.hoverButtonText = page.getByText("You hovered over the Button");
   }
 
-  async clickOnTheHoverButton() {
-    await this.hoverButton.click({ delay: 3000 });
+  async clickOnTheHoverButton(): Promise<void> {
+    return this.hoverButton.click({ delay: 3000 });
   }
 
   async verifyTheTextIsVisible() {

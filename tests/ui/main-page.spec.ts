@@ -1,6 +1,13 @@
 import test from "@lib/conftest";
 import { faker } from "@faker-js/faker/locale/en";
 
+test.beforeEach(async ({ 
+  mainPage 
+}) => {
+  await mainPage.navigateToTheMainPage();
+})
+
+
 test.describe("UI test suite", () => {
   test("Verify user can enter new data into the table", async ({
     elementsPage,
@@ -23,7 +30,6 @@ test.describe("UI test suite", () => {
     email = faker.internet.email();
     department = "QA";
 
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheElementsSection();
     await elementsPage.webTableCreation(
       name,
@@ -62,7 +68,6 @@ test.describe("UI test suite", () => {
     email = faker.internet.email();
     department = "QA";
 
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheElementsSection();
 
     await elementsPage.webTableCreation(
@@ -101,7 +106,6 @@ test.describe("UI test suite", () => {
     brokenLinksImagesFixture,
     mainPage,
   }) => {
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheElementsSection();
 
     await brokenLinksImagesFixture.navigateToBrokenImagePage();
@@ -113,7 +117,6 @@ test.describe("UI test suite", () => {
     widgetsPage,
     progressBarSubpage,
   }) => {
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheWidgetsSection();
     await widgetsPage.navigateToProgressBarSubpage();
 
@@ -132,7 +135,6 @@ test.describe("UI test suite", () => {
     widgetsPage,
     tooltipSubpage,
   }) => {
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheWidgetsSection();
 
     await widgetsPage.navigateToTooltipsSubpage();
@@ -146,7 +148,6 @@ test.describe("UI test suite", () => {
     interactionsPage,
     droppableSubpage,
   }) => {
-    await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheNavigatesSection();
 
     await interactionsPage.navigateToTooltipsSubpage();

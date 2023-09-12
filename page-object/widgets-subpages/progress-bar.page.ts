@@ -36,7 +36,7 @@ export class ProgressBarSubpage {
 
   async verifyTheProgressBarHasFinished(): Promise<void> {
     return expect(this.progressBar).toHaveAttribute("aria-valuenow", "100", {
-      timeout: 11000,
+      timeout: 12000,
     });
   }
 

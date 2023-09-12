@@ -6,7 +6,7 @@ test.describe("End-2-End API tests suite", () => {
     actionsAPICustomLibrary,
   }) => {
     const username = faker.internet.userName();
-    const password = faker.internet.password() + "$";
+    const password = faker.internet.password() + "$1S";
 
     const responseStatus = await actionsAPICustomLibrary.createUser(
       username,
