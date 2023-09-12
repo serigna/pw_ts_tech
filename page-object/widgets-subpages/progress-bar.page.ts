@@ -1,4 +1,4 @@
-import test, { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 
 export class ProgressBarSubpage {
   readonly page: Page;
@@ -15,8 +15,8 @@ export class ProgressBarSubpage {
     this.resetButton = page.getByRole('button', { name: 'Reset' });
   }
 
-  async clickStartProgressBarButton() {
-    return await this.startButton.click();
+  async clickStartProgressBarButton(): Promise<void> {
+    return this.startButton.click();
   }
 
   async checkProgressBarColor(color: string): Promise<void> {
@@ -26,11 +26,11 @@ export class ProgressBarSubpage {
     return expect(progressBarColor).toBe(color);
   }
 
-  async verifyStopButtonIsPresent() {
+  async verifyStopButtonIsPresent(): Promise<void> {
     return expect(this.stopButton).toBeVisible();
   }
 
-  async verifyResetButtonIsPresent() {
+  async verifyResetButtonIsPresent(): Promise<void> {
     return expect(this.resetButton).toBeVisible();
   }
 

@@ -67,8 +67,8 @@ export class WebTablesElements {
     await this.sumbitRegistrationFromBtn.click();
   }
 
-  async retrieveTheDataFromTable(email: string): Promise<any> {
-    let listOfElements
+  async retrieveTheDataFromTable(email: string): Promise<string[]> {
+    let listOfElements;
 
     const row = this.page.locator('div.rt-tr-group')
     const rowTexts = await row.locator(':scope').allInnerTexts()

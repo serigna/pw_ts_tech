@@ -5,6 +5,8 @@ import { MainPage } from "page-object/main.page";
 import { WidgetsPage } from "page-object/widgets.page";
 import { TooltipSubpage } from "page-object/widgets-subpages/tooltip.page"
 import { ProgressBarSubpage } from "page-object/widgets-subpages/progress-bar.page"
+import { InteractionsPage } from "page-object/interactions.page"
+import { DroppableSubpage } from "page-object/interactions-subpages/droppable.page"
 
 type PageFixtures = {
   elementsPage: ElementsPage;
@@ -13,6 +15,8 @@ type PageFixtures = {
   widgetsPage: WidgetsPage;
   tooltipSubpage: TooltipSubpage;
   progressBarSubpage: ProgressBarSubpage;
+  interactionsPage: InteractionsPage;
+  droppableSubpage: DroppableSubpage;
 };
 
 const test = base.extend<PageFixtures>({
@@ -32,7 +36,13 @@ const test = base.extend<PageFixtures>({
     await use(new TooltipSubpage(page));
   },
   progressBarSubpage: async ({ page }, use) => {
-    await use(new ProgressBarSubpage(page))
+    await use(new ProgressBarSubpage(page));
+  },
+  interactionsPage: async ({ page }, use) => {
+    await use(new InteractionsPage(page));
+  },
+  droppableSubpage: async ({ page }, use) => {
+    await use(new DroppableSubpage(page));
   },
 });
 
