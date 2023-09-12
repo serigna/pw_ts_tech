@@ -1,4 +1,4 @@
-import type { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class MainPage {
   readonly page: Page;
@@ -8,6 +8,7 @@ export class MainPage {
   readonly widgetsSection: Locator;
   readonly interactionsSection: Locator;
   readonly bookStoreSectio: Locator;
+  readonly mainHeaderText: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -35,6 +36,8 @@ export class MainPage {
       .locator("div")
       .filter({ hasText: /^Book Store Application$/ })
       .first();
+    this.mainHeaderText = page
+      .locator('div.main-header')
   }
 
   async navigateToTheMainPage(): Promise<void> {
@@ -42,8 +45,15 @@ export class MainPage {
     await this.page.waitForLoadState();
   }
 
-  async navigateToTheElementsPage(): Promise<void> {
+  async navigateToTheElementsSection(): Promise<void> {
     await this.elementsSection.click();
     await this.page.waitForLoadState();
+    expect(this.mainHeaderText).toContainText('Elements')
+  }
+
+  async navigateToTheWidgetsSection(): Promise<void> {
+    await this.widgetsSection.click();
+    await this.page.waitForLoadState();
+    expect(this.mainHeaderText).toContainText('Widgets')
   }
 }

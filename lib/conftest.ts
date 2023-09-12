@@ -2,11 +2,13 @@ import { test as base } from "@playwright/test";
 import { ElementsPage } from "page-object/elements.page";
 import { BrokenLinkImages } from "page-object/broken-link-images.page";
 import { MainPage } from "page-object/main.page";
+import { TooltipWidgetsPage } from "page-object/tooltip-alerts.page"
 
 type PageFixtures = {
   elementsPage: ElementsPage;
   brokenLinksImagesFixture: BrokenLinkImages;
   mainPage: MainPage;
+  tooltipWidgetsPage: TooltipWidgetsPage;
 };
 
 const test = base.extend<PageFixtures>({
@@ -18,6 +20,9 @@ const test = base.extend<PageFixtures>({
   },
   mainPage: async ({ page }, use) => {
     await use(new MainPage(page));
+  },
+  tooltipWidgetsPage: async ({ page }, use) => {
+    await use(new TooltipWidgetsPage(page));
   },
 });
 

@@ -1,6 +1,7 @@
 import test from "@lib/conftest";
+import { expect } from "@playwright/test";
 
-test.describe("Ui test suite", () => {
+test.describe("UI test suite", () => {
   test("Verify user can enter new data into the table", async ({
     elementsPage, mainPage
   }) => {
@@ -18,7 +19,7 @@ test.describe("Ui test suite", () => {
     department = "QA";
 
     await mainPage.navigateToTheMainPage()
-    await mainPage.navigateToTheElementsPage()
+    await mainPage.navigateToTheElementsSection()
     await elementsPage.webTableCreation(name, lastName, age, salary, email, department);
     await elementsPage.submitTheRegistrationForm()
     await elementsPage.verifyThatTheDataWasPopulatedCorrectly(name, lastName, age, salary, email, department);
@@ -43,7 +44,7 @@ test.describe("Ui test suite", () => {
 
     
     await mainPage.navigateToTheMainPage()
-    await mainPage.navigateToTheElementsPage()
+    await mainPage.navigateToTheElementsSection()
 
     await elementsPage.webTableCreation(name, lastName, age, salary, email, department);
     await elementsPage.submitTheRegistrationForm();
@@ -61,10 +62,30 @@ test.describe("Ui test suite", () => {
     brokenLinksImagesFixture, mainPage
   }) => {
     await mainPage.navigateToTheMainPage();
-    await mainPage.navigateToTheElementsPage();
+    await mainPage.navigateToTheElementsSection();
 
     await brokenLinksImagesFixture.navigateToBrokenImagePage();
     await brokenLinksImagesFixture.verifyWhhtherThereIsABrokenImage();
+  })
+
+  test("Verify the progress bar", async ({
+    mainPage,
+  }) => {
+    await mainPage.navigateToTheMainPage();
+    await mainPage.navigateToTheWidgetsSection();
+
+  })
+
+  test("Verify the tooltip", async ({
+    mainPage, tooltipWidgetsPage
+  }) => {
+    await mainPage.navigateToTheMainPage();
+    await mainPage.navigateToTheWidgetsSection();
+
+    await tooltipWidgetsPage.navigateToTooltipsSubpage();
+
+    await tooltipWidgetsPage.clickOnTheHoverButton();
+    await tooltipWidgetsPage.verifyTheTextIsVisible();
   })
 
 });
