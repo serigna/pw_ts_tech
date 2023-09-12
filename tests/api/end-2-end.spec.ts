@@ -1,6 +1,5 @@
 import test from "@lib/conftest";
 import { faker } from "@faker-js/faker/locale/en";
-// import { ActionsAPICustomLibrary } from "@lib/ActionsAPICustomLibrary"
 
 test.describe("End-2-End API tests suite", () => {
   test("Creation of user account - Positive path", async ({
