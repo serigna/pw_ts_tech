@@ -74,18 +74,19 @@ test.describe("UI test suite", () => {
     await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheWidgetsSection();
 
+
   })
 
   test("Verify the tooltip", async ({
-    mainPage, tooltipWidgetsPage
+    mainPage, widgetsPage, tooltipSubpage
   }) => {
     await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheWidgetsSection();
 
-    await tooltipWidgetsPage.navigateToTooltipsSubpage();
+    await widgetsPage.navigateToTooltipsSubpage();
 
-    await tooltipWidgetsPage.clickOnTheHoverButton();
-    await tooltipWidgetsPage.verifyTheTextIsVisible();
+    await tooltipSubpage.clickOnTheHoverButton();
+    await tooltipSubpage.verifyTheTextIsVisible();
   })
 
 });

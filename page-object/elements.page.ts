@@ -1,6 +1,6 @@
 import { MainPage } from "./main.page";
 import { Page } from "@playwright/test";
-import { WebTablesElements } from "./elements-pages/web-tables.page";
+import { WebTablesElements } from "./elements-subpages/web-tables.page";
 
 export class ElementsPage {
   readonly mainPage: MainPage;
@@ -15,7 +15,7 @@ export class ElementsPage {
 
   async navigateToElementsPage(): Promise<void> {
     await this.mainPage.navigateToTheMainPage();
-    await this.mainPage.navigateToTheElementsPage();
+    await this.mainPage.navigateToTheElementsSection();
     await this.page.waitForLoadState("domcontentloaded");
   }
 

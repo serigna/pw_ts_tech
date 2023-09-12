@@ -1,0 +1,11 @@
+import test, { Page } from "@playwright/test";
+
+export class ProgressBarSubpage {
+    readonly page: Page
+
+    constructor (page: Page) {
+        this.page = page
+    }
+
+
+}

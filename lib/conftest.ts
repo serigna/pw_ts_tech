@@ -2,13 +2,17 @@ import { test as base } from "@playwright/test";
 import { ElementsPage } from "page-object/elements.page";
 import { BrokenLinkImages } from "page-object/broken-link-images.page";
 import { MainPage } from "page-object/main.page";
-import { TooltipWidgetsPage } from "page-object/tooltip-alerts.page"
+import { WidgetsPage } from "page-object/widgets.page";
+import { TooltipSubpage } from "page-object/widgets-subpages/tooltip.page"
+import { ProgressBarSubpage } from "page-object/widgets-subpages/progress-bar.page"
 
 type PageFixtures = {
   elementsPage: ElementsPage;
   brokenLinksImagesFixture: BrokenLinkImages;
   mainPage: MainPage;
-  tooltipWidgetsPage: TooltipWidgetsPage;
+  widgetsPage: WidgetsPage;
+  tooltipSubpage: TooltipSubpage;
+  progressBarSubpage: ProgressBarSubpage;
 };
 
 const test = base.extend<PageFixtures>({
@@ -21,8 +25,14 @@ const test = base.extend<PageFixtures>({
   mainPage: async ({ page }, use) => {
     await use(new MainPage(page));
   },
-  tooltipWidgetsPage: async ({ page }, use) => {
-    await use(new TooltipWidgetsPage(page));
+  widgetsPage: async ({ page }, use) => {
+    await use(new WidgetsPage(page));
+  },
+  tooltipSubpage: async ({ page }, use) => {
+    await use(new TooltipSubpage(page));
+  },
+  progressBarSubpage: async ({ page }, use) => {
+    await use(new ProgressBarSubpage(page))
   },
 });
 
