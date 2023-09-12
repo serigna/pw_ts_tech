@@ -7,6 +7,7 @@ import { TooltipSubpage } from "page-object/widgets-subpages/tooltip.page"
 import { ProgressBarSubpage } from "page-object/widgets-subpages/progress-bar.page"
 import { InteractionsPage } from "page-object/interactions.page"
 import { DroppableSubpage } from "page-object/interactions-subpages/droppable.page"
+import { ActionsAPICustomLibrary } from "@lib/ActionsAPICustomLibrary"
 
 type PageFixtures = {
   elementsPage: ElementsPage;
@@ -17,6 +18,7 @@ type PageFixtures = {
   progressBarSubpage: ProgressBarSubpage;
   interactionsPage: InteractionsPage;
   droppableSubpage: DroppableSubpage;
+  actionsAPICustomLibrary: ActionsAPICustomLibrary;
 };
 
 const test = base.extend<PageFixtures>({
@@ -44,6 +46,9 @@ const test = base.extend<PageFixtures>({
   droppableSubpage: async ({ page }, use) => {
     await use(new DroppableSubpage(page));
   },
+  actionsAPICustomLibrary: async ({ request }, use) => {
+    await use(new ActionsAPICustomLibrary(request))
+  }
 });
 
 export default test;

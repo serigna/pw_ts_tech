@@ -40,6 +40,7 @@ export class MainPage {
   }
 
   async navigateToTheMainPage(): Promise<void> {
+    await this.page.setViewportSize({ width: 1920, height: 1080 })
     await this.page.goto("/");
     await this.page.waitForLoadState();
   }

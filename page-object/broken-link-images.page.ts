@@ -1,4 +1,4 @@
-import test, { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import { ElementsPage } from "./elements.page";
 
 export class BrokenLinkImages {
