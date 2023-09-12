@@ -36,30 +36,29 @@ export class MainPage {
       .locator("div")
       .filter({ hasText: /^Book Store Application$/ })
       .first();
-    this.mainHeaderText = page
-      .locator('div.main-header')
+    this.mainHeaderText = page.locator("div.main-header");
   }
 
   async navigateToTheMainPage(): Promise<void> {
-    await this.page.goto('/');
+    await this.page.goto("/");
     await this.page.waitForLoadState();
   }
 
   async navigateToTheElementsSection(): Promise<void> {
     await this.elementsSection.click();
     await this.page.waitForLoadState();
-    expect(this.mainHeaderText).toContainText('Elements');
+    expect(this.mainHeaderText).toContainText("Elements");
   }
 
   async navigateToTheWidgetsSection(): Promise<void> {
     await this.widgetsSection.click();
     await this.page.waitForLoadState();
-    expect(this.mainHeaderText).toContainText('Widgets');
+    expect(this.mainHeaderText).toContainText("Widgets");
   }
 
   async navigateToTheNavigatesSection(): Promise<void> {
     await this.interactionsSection.click();
     await this.page.waitForLoadState();
-    expect(this.mainHeaderText).toContainText('Interactions');
+    expect(this.mainHeaderText).toContainText("Interactions");
   }
 }

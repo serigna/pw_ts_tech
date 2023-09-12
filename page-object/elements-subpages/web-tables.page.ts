@@ -1,4 +1,4 @@
-import test, { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class WebTablesElements {
   readonly page: Page;
@@ -70,25 +70,21 @@ export class WebTablesElements {
   async retrieveTheDataFromTable(email: string): Promise<string[]> {
     let listOfElements;
 
-    const row = this.page.locator('div.rt-tr-group')
-    const rowTexts = await row.locator(':scope').allInnerTexts()
+    const row = this.page.locator("div.rt-tr-group");
+    const rowTexts = await row.locator(":scope").allInnerTexts();
 
     rowTexts.forEach((text: string) => {
       if (text.includes(email)) {
-        listOfElements = text.split("\n", 6)
+        listOfElements = text.split("\n", 6);
       }
-    })
-    return listOfElements
+    });
+    return listOfElements;
   }
 
-  async verifyTheSubmittedDataRow(
-    text: string,
-    email: string,
-  ): Promise<void> {
-
-    const rowElements = await this.retrieveTheDataFromTable(email)
+  async verifyTheSubmittedDataRow(text: string, email: string): Promise<void> {
+    const rowElements = await this.retrieveTheDataFromTable(email);
     if (!rowElements.includes(text)) {
-      throw new Error('There is no such a row in the table.')
+      throw new Error("There is no such a row in the table.");
     }
   }
 
@@ -100,11 +96,10 @@ export class WebTablesElements {
     salary: string,
     department: string
   ): Promise<void> {
-    await this.verifyTheSubmittedDataRow(name, email)
-    await this.verifyTheSubmittedDataRow(lastName, email)
-    await this.verifyTheSubmittedDataRow(age, email)
-    await this.verifyTheSubmittedDataRow(salary, email)
-    await this.verifyTheSubmittedDataRow(department, email)
+    await this.verifyTheSubmittedDataRow(name, email);
+    await this.verifyTheSubmittedDataRow(lastName, email);
+    await this.verifyTheSubmittedDataRow(age, email);
+    await this.verifyTheSubmittedDataRow(salary, email);
+    await this.verifyTheSubmittedDataRow(department, email);
   }
-
 }

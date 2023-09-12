@@ -68,31 +68,37 @@ export class ElementsPage {
     department: string
   ): Promise<void> {
     await this.page
-    .getByRole('row', { name: `${name} ${lastName} ${age} ${email} ${salary} ${department} Edit Delete` })
-    .getByTitle('Edit')
-    .getByRole('img').click();
+      .getByRole("row", {
+        name: `${name} ${lastName} ${age} ${email} ${salary} ${department} Edit Delete`,
+      })
+      .getByTitle("Edit")
+      .getByRole("img")
+      .click();
   }
 
-  async modifyDesiredFieldInTheForm(field: string, new_value: string): Promise<void> {
+  async modifyDesiredFieldInTheForm(
+    field: string,
+    new_value: string
+  ): Promise<void> {
     switch (field) {
-      case 'Name':
+      case "Name":
         await this.webTablesElements.populateFirstNameField(new_value);
-        break
-      case 'Last Name':
+        break;
+      case "Last Name":
         await this.webTablesElements.populateLastNameField(new_value);
-        break
-      case 'Department':
+        break;
+      case "Department":
         await this.webTablesElements.populateDepartmentField(new_value);
-        break
-      case 'Age':
+        break;
+      case "Age":
         await this.webTablesElements.populateAgeField(new_value);
-        break
-      case 'Email':
+        break;
+      case "Email":
         await this.webTablesElements.populateEmailField(new_value);
-        break
-      case 'Salary':
+        break;
+      case "Salary":
         await this.webTablesElements.populateSalaryField(new_value);
-        break
+        break;
     }
   }
 }

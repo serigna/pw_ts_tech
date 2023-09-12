@@ -1,4 +1,4 @@
-import { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page, expect } from "@playwright/test";
 
 export class ProgressBarSubpage {
   readonly page: Page;
@@ -9,10 +9,10 @@ export class ProgressBarSubpage {
 
   constructor(page: Page) {
     this.page = page;
-    this.progressBar = page.getByRole('progressbar');
-    this.startButton = page.getByRole('button', { name: 'Start' });
-    this.stopButton = page.getByRole('button', { name: 'Stop' });
-    this.resetButton = page.getByRole('button', { name: 'Reset' });
+    this.progressBar = page.getByRole("progressbar");
+    this.startButton = page.getByRole("button", { name: "Start" });
+    this.stopButton = page.getByRole("button", { name: "Stop" });
+    this.resetButton = page.getByRole("button", { name: "Reset" });
   }
 
   async clickStartProgressBarButton(): Promise<void> {
@@ -21,7 +21,7 @@ export class ProgressBarSubpage {
 
   async checkProgressBarColor(color: string): Promise<void> {
     const progressBarColor = await this.progressBar.evaluate((elem) => {
-      return window.getComputedStyle(elem).getPropertyValue('background-color');
+      return window.getComputedStyle(elem).getPropertyValue("background-color");
     });
     return expect(progressBarColor).toBe(color);
   }
@@ -35,12 +35,12 @@ export class ProgressBarSubpage {
   }
 
   async verifyTheProgressBarHasFinished(): Promise<void> {
-    return expect(this.progressBar).toHaveAttribute('aria-valuenow', '100', {
+    return expect(this.progressBar).toHaveAttribute("aria-valuenow", "100", {
       timeout: 11000,
     });
   }
 
   async verifyTheProgressBarHasHundredPercent(): Promise<void> {
-    expect(this.progressBar).toHaveText('100%');
+    expect(this.progressBar).toHaveText("100%");
   }
 }

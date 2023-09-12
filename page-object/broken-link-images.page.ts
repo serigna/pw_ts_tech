@@ -9,8 +9,8 @@ export class BrokenLinkImages {
 
   constructor(page: Page) {
     this.page = page;
-    this.brokenLinksImagesOption = page.getByText('Broken Links - Images');
-    this.imageLoc = page.locator('img');
+    this.brokenLinksImagesOption = page.getByText("Broken Links - Images");
+    this.imageLoc = page.locator("img");
   }
 
   async navigateToBrokenImagePage(): Promise<void> {
@@ -22,18 +22,18 @@ export class BrokenLinkImages {
     const allImages = await this.imageLoc.all();
 
     for (const img of allImages) {
-      const imgSrc = await img.getAttribute('src');
+      const imgSrc = await img.getAttribute("src");
 
       if (imgSrc?.length > 1) {
-        const res = await this.page.request.get(imgSrc)
+        const res = await this.page.request.get(imgSrc);
         const htmlContent = res.headersArray();
-      
+
         for (const htmlItem of htmlContent) {
-          if (htmlItem.value.includes('text/html')) {
-            throw new Error('There is a broken image on the page.');
+          if (htmlItem.value.includes("text/html")) {
+            throw new Error("There is a broken image on the page.");
           }
         }
-      } 
+      }
     }
   }
 }
