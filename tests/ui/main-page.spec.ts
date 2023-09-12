@@ -68,13 +68,21 @@ test.describe("UI test suite", () => {
     await brokenLinksImagesFixture.verifyWhhtherThereIsABrokenImage();
   })
 
-  test("Verify the progress bar", async ({
-    mainPage,
+  test.only("Verify the progress bar", async ({
+    mainPage, widgetsPage, progressBarSubpage
   }) => {
     await mainPage.navigateToTheMainPage();
     await mainPage.navigateToTheWidgetsSection();
+    await widgetsPage.navigateToProgressBarSubpage();
 
-
+    await progressBarSubpage.clickStartProgressBarButton();
+    await progressBarSubpage.verifyStopButtonIsPresent();
+    await progressBarSubpage.checkProgressBarColor('rgb(23, 162, 184)');
+    
+    await progressBarSubpage.verifyTheProgressBarHasFinished();
+    await progressBarSubpage.verifyResetButtonIsPresent();
+    await progressBarSubpage.verifyTheProgressBarHasHundredPercent();
+    await progressBarSubpage.checkProgressBarColor('rgb(40, 167, 69)');
   })
 
   test("Verify the tooltip", async ({
