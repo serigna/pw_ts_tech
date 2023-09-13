@@ -48,7 +48,7 @@ Make sure you have the following prerequisites installed on your system:
 ## Usage
 To run the sample tests using Playwright and TypeScript, use the following command:
 1. ```bash
-    npm install
+    npm test
     ```
 
 This command will execute the sample test cases located in the tests directory. You can modify and expand these tests to suit your own application's testing needs.
